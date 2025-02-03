@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = "https://demohosting.pythonanywhere.com/api";
 
 export const uploadJobDescription = (file) => {
   let formData = new FormData();

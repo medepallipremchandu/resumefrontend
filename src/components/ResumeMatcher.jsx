@@ -12,7 +12,7 @@ const ResumeMatcher = () => {
   const [processing, setProcessing] = useState(false);
   const [results, setResults] = useState([]);
 
-  const API_URL = "http://127.0.0.1:8000/api";
+  const API_URL = "https://demohosting.pythonanywhere.com/api";
   
   const handleJobFileChange = (event) => {
     setJobFile(event.target.files[0]);
