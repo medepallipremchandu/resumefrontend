@@ -79,7 +79,7 @@ const ResumeMatcher = () => {
   return (
     <div className="container">
       <ToastContainer />
-      <h2><span className="sage">SAGE</span> <span className="it">IT</span> - AI Powered Profile Screening Agent</h2>
+      <h2><span className="sage">SAGE</span> <span className="it">IT</span> - AI Profile Screening Agent</h2>
 
       <div className="upload-section">
         <h4>Upload Job Description (DOCX)</h4>
