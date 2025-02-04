@@ -78,10 +78,10 @@ const ResumeMatcher = () => {
   return (
     <div className="container">
       <ToastContainer />
-      <h2>Resume Matcher</h2>
+      <h2>SageIT - AI Powered Profile Screening Agent</h2>
 
       <div className="upload-section">
-        <h4>Upload Job Description</h4>
+        <h4>Upload Job Description (DOCX)</h4>
         <input type="file" accept=".docx" onChange={handleJobFileChange} />
         <button onClick={handleJobUpload}>Upload</button>
       </div>
