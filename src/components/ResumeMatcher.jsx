@@ -4,6 +4,7 @@ import { uploadJobDescription, uploadResumes, processResumes, downloadResume } f
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../components/ResumeMatcher.css";
+import "../style.css"
 // import axios from "axios";
 
 const ResumeMatcher = () => {
@@ -78,7 +79,7 @@ const ResumeMatcher = () => {
   return (
     <div className="container">
       <ToastContainer />
-      <h2>SageIT - AI Powered Profile Screening Agent</h2>
+      <h2><span className="sage">SAGE</span> <span className="it">IT</span> - AI Powered Profile Screening Agent</h2>
 
       <div className="upload-section">
         <h4>Upload Job Description (DOCX)</h4>
