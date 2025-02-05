@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+  }
+  
+  body{
+    color: black;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+  }
+  
+  .container {
+    padding: 10px;
+    width: 100%;
+    background: white;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .upload-section, .process-section, .results-section {
+    margin: 20px 0;
+    padding: 5px;
+  }
+  
+  input {
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background: gray;
+  }
+  
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 3px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    place-content: center;
+    place-items: center;
+  }
+  
+  th {
+    background: #007bff;
+    color: white;
+  }
+  
+  .results-section button {
+    margin-top: 10px;
+  }
+  
+  
+  .sage{
+    color: darkblue;
+  }
+  .it{
+    color: green;
+  }
