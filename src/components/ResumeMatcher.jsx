@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-
-import { uploadJobDescription, uploadResumes, processResumes, downloadResume } from "../api";
+import { uploadJobDescription, uploadResumes, processResumes, downloadResume } from "./api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../components/ResumeMatcher.css";
-import "../style.css"
-// import axios from "axios";
+import "react-circular-progressbar/dist/styles.css";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "../css/style.css";
 
 const ResumeMatcher = () => {
   const [jobFile, setJobFile] = useState(null);
@@ -13,8 +12,6 @@ const ResumeMatcher = () => {
   const [processing, setProcessing] = useState(false);
   const [results, setResults] = useState([]);
 
-  const API_URL = "https://demohosting.pythonanywhere.com/api";
-  
   const handleJobFileChange = (event) => {
     setJobFile(event.target.files[0]);
   };
@@ -25,7 +22,6 @@ const ResumeMatcher = () => {
 
   const handleJobUpload = async () => {
     if (!jobFile) return toast.error("Please select a job description file");
-
     try {
       await uploadJobDescription(jobFile);
       toast.success("Job description uploaded successfully");
@@ -36,7 +32,6 @@ const ResumeMatcher = () => {
 
   const handleResumeUpload = async () => {
     if (!resumeFile) return toast.error("Please select a ZIP file of resumes");
-
     try {
       await uploadResumes(resumeFile);
       toast.success("Resumes uploaded successfully");
@@ -48,7 +43,6 @@ const ResumeMatcher = () => {
   const handleProcessResumes = async () => {
     setProcessing(true);
     setResults([]);
-
     try {
       const response = await processResumes();
       setResults(response.data.resumes);
@@ -74,7 +68,6 @@ const ResumeMatcher = () => {
       console.error("Error downloading file:", error);
     }
   };
-  
 
   return (
     <div className="container">
@@ -105,24 +98,77 @@ const ResumeMatcher = () => {
           <table>
             <thead>
               <tr>
-                {/* <th>Company</th> */}
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
                 <th>Filename</th>
-                <th>Similarity (%)</th>
+                <th>Skills</th>
+                <th>Experience</th>
+                <th>Education</th>
+                <th>Overall Match</th>
                 <th>Download</th>
               </tr>
             </thead>
             <tbody>
               {results.map((res, index) => (
                 <tr key={index}>
-                  {/* <td>{res.company}</td> */}
                   <td>{res.name}</td>
                   <td>{res.email}</td>
                   <td>{res.phone_number}</td>
                   <td>{res.filename}</td>
-                  <td>{res.match_percentage}</td>
+
+                  <td>
+                    <div style={{ width: "50px", height: "50px" }}>
+                      <CircularProgressbar 
+                        value={res.skills_match} 
+                        text={`${res.skills_match}%`} 
+                        styles={buildStyles({ 
+                          pathColor: res.skills_match <= 30 ? "red" : res.skills_match <= 60 ? "yellow" : "green", 
+                          textColor: res.skills_match <= 30 ? "red" : res.skills_match <= 60 ? "yellow" : "green" 
+                        })}
+                      />
+                    </div>
+                  </td>
+
+                  <td>
+                    <div style={{ width: "50px", height: "50px" }}>
+                      <CircularProgressbar 
+                        value={res.experience_match} 
+                        text={`${res.experience_match}%`} 
+                        styles={buildStyles({ 
+                          pathColor: res.experience_match <= 30 ? "red" : res.experience_match <= 60 ? "yellow" : "green", 
+                          textColor: res.experience_match <= 30 ? "red" : res.experience_match <= 60 ? "yellow" : "green" 
+                        })}
+                      />
+                    </div>
+                  </td>
+
+                  <td>
+                    <div style={{ width: "50px", height: "50px" }}>
+                      <CircularProgressbar 
+                        value={res.education_match} 
+                        text={`${res.education_match}%`} 
+                        styles={buildStyles({ 
+                          pathColor: res.education_match <= 30 ? "red" : res.education_match <= 60 ? "yellow" : "green", 
+                          textColor: res.education_match <= 30 ? "red" : res.education_match <= 60 ? "yellow" : "green" 
+                        })}
+                      />
+                    </div>
+                  </td>
+
+                  <td>
+                    <div style={{ width: "50px", height: "50px" }}>
+                      <CircularProgressbar 
+                        value={res.overall_match} 
+                        text={`${res.overall_match}%`} 
+                        styles={buildStyles({ 
+                          pathColor: res.overall_match <= 30 ? "red" : res.overall_match <= 60 ? "yellow" : "green", 
+                          textColor: res.overall_match <= 30 ? "red" : res.overall_match <= 60 ? "yellow" : "green" 
+                        })}
+                      />
+                    </div>
+                  </td>
+
                   <td>
                     <button onClick={() => handleDownload(res.filename)}>Download</button>
                   </td>
